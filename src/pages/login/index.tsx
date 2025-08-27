@@ -42,7 +42,7 @@ const LoginForm: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-red-400 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-blue-800 to-green-950 p-6">
       <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">
           Sign In
