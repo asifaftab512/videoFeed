@@ -91,7 +91,7 @@ const Sidebar: React.FC = () => {
            
 
             <Image
-              src={user?.bio || "/default-avatar.png"}
+              src={user?.picture || "/default-avatar.png"}
               alt={user?.displayName || "User profile"}
               width={40} // must provide width
               height={40} // must provide height

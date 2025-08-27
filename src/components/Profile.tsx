@@ -57,7 +57,9 @@ export default function ProfilePage() {
   //   formatPictureUrl(user?.bio)
   // );
 
-  const [preview, setPreview] = useState(user?.bio || "/default-avatar.png")
+  const [preview, setPreview] = useState(user?.picture || "/default-avatar.png")
+
+  console.log("user profile pic: ", preview)
 
   // Hydration + auth redirect
   useEffect(() => setHydrated(true), []);

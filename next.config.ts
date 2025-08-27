@@ -11,22 +11,24 @@
 
 import type { NextConfig } from "next";
 
-module.exports = {
-  output: 'standalone',
-};
+// module.exports = {
+//   output: 'standalone',
+// };
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // reactStrictMode: true,
+  output: "standalone",
 
   images: {
     remotePatterns: [
       // Local uploads (during dev)
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "3000",
-        pathname: "/uploads/**",
-      },
+      // {
+      //   protocol: "http",
+      //   hostname: "localhost",
+      //   port: "3000",
+      //   pathname: "/uploads/**",
+      // },
       // S3 bucket (for production thumbnails)
       {
         protocol: "https",
