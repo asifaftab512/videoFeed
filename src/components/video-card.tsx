@@ -9,7 +9,11 @@ interface Props {
   onSelect: (video: VideoResponse) => void;
 }
 
+
+
 const VideoCard: React.FC<Props> = ({ videos, onSelect }) => {
+
+  console.log(videos)
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {videos.map((video) => (
@@ -30,7 +34,7 @@ const VideoCard: React.FC<Props> = ({ videos, onSelect }) => {
     >
           <div className="relative">
         <Image
-          src={video.thumbnailUrl || "https://placehold.co/600x400?text=No+Thumbnail"}
+          src={video.thumbnailUrl || "/no-thumbnail.png"}
           alt={video.title}
           width={112}                
           height={112} 

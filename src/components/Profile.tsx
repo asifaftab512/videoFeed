@@ -14,7 +14,7 @@ interface Video {
   totalLikes: number;
 }
 
-const BASE_URL = "http://3.81.10.10:5000";
+const BASE_URL = "https://videoshare-bdducrcvaxapa5gg.southeastasia-01.azurewebsites.net";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -39,11 +39,11 @@ export default function ProfilePage() {
 
 
   // ✅ Build a proper picture URL (supports null/relative/absolute)
-  const formatPictureUrl = (pic?: string | null): string => {
-    if (!pic) return "/default-avatar.png";
-    if (pic.startsWith("http")) return pic;
-    return BASE_URL + pic;
-  };
+  // const formatPictureUrl = (pic?: string | null): string => {
+  //   if (!pic) return "/default-avatar.png";
+  //   if (pic.startsWith("https")) return pic;
+  //   return BASE_URL + pic;
+  // };
 
 
   // const pictureURL = BASE_URL + (user?.bio);
@@ -53,9 +53,11 @@ export default function ProfilePage() {
   // console.log("User Picture: ", user?.bio);
 
   // What we actually render for the avatar
-  const [preview, setPreview] = useState<string>(
-    formatPictureUrl(user?.bio)
-  );
+  // const [preview, setPreview] = useState<string>(
+  //   formatPictureUrl(user?.bio)
+  // );
+
+  const [preview, setPreview] = useState(user?.bio || "/default-avatar.png")
 
   // Hydration + auth redirect
   useEffect(() => setHydrated(true), []);
@@ -64,12 +66,15 @@ export default function ProfilePage() {
     if (!isAuthenticated) router.push("/login");
   }, [hydrated, isAuthenticated, router]);
 
+
+
   // Sync preview when user changes + fetch videos
   useEffect(() => {
     if (!user) return;
 
+
     // keep preview in sync with the store value (e.g., after login/rehydrate)
-    setPreview(formatPictureUrl(user.picture));
+    // setPreview(formatPictureUrl(user.picture));
 
     const fetchVideos = async () => {
       try {
@@ -123,7 +128,7 @@ export default function ProfilePage() {
       updateUser(updatedUser);
 
       // ✅ Update local preview immediately
-      setPreview(formatPictureUrl(updatedUser.picture));
+      // setPreview(formatPictureUrl(updatedUser.picture));
 
       alert("Profile updated successfully!");
       setShowModal(false);
@@ -138,6 +143,7 @@ export default function ProfilePage() {
     if (file) {
       // local preview (blob:) works with next/image if unoptimized
       setPreview(URL.createObjectURL(file));
+      
     }
   };
 
@@ -149,7 +155,7 @@ export default function ProfilePage() {
           {/* Profile Picture */}
           <div className="flex justify-center mb-6">
             <Image
-              src={preview || "/default-avatar.png"}
+              src={preview}
               alt="Profile"
               width={112}                 // w-28
               height={112}                // h-28

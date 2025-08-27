@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
         hostname: "videoshare-uploads.s3.amazonaws.com",
         pathname: "/**",
       },
+      // Azure Blob storage
+      {
+        protocol: "https",
+        hostname: "asifvideoshare.blob.core.windows.net",
+        pathname: "/**",
+      },
       // Placehold.co (for fallback thumbnails)
       {
         protocol: "https",

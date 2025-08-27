@@ -1,7 +1,7 @@
 // axiosInstance.ts
 import axios from "axios";
 
-const BASE_URL = "http://3.81.10.10:5000/api"; // Backend base URL
+const BASE_URL = "https://videoshare-bdducrcvaxapa5gg.southeastasia-01.azurewebsites.net/api"; // Backend base URL
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
