@@ -1,0 +1,41 @@
+name: Build and deploy Next.js app to Azure Web App
+
+on:
+  push:
+    branches:
+      - main  
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: "videoshare-frontend"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+      - name: Prepare app for deployment
+        run: |
+          mkdir -p build
+          mkdir -p build/.next
+          cp -r .next/standalone/* build/
+          cp -r .next/static build/.next/static || echo "No .next/static directory found"
+          cp -r public build/public || echo "No public directory found"
+          cp package.json build/
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.WEBAPP_NAME }}
+          publish-profile: ${{ secrets.PUBLISHSETTINGAPP }}
+          package: ./build
